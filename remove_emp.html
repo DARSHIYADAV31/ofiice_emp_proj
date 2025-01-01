@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Employee</title>
+
+    <!-- Custom CSS -->
+    <style>
+      body {
+        background: #ffecd1;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+      }
+
+      .container {
+        background: #f4a261;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        margin-top: 50px;
+      }
+
+      h1 {
+        font-weight: bold;
+        text-align: center;
+        color: #264653;
+      }
+
+      hr {
+        border: 0;
+        height: 2px;
+        background-color: #000; /* Black color */
+        margin: 20px 0;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .dropdown-button {
+        background: #e76f51;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 20px auto;
+        display: block;
+        width: 100%;
+        transition: background 0.3s ease;
+      }
+
+      .dropdown-button:hover {
+        background: #264653;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background: #f9f9f9;
+        min-width: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 5px;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background: #ddd;
+      }
+
+      .dropdown.show .dropdown-content {
+        display: block;
+      }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Remove an Employee</h1>
+        <hr>
+        <div class="dropdown">
+            <button class="dropdown-button">Choose Employee</button>
+            <div class="dropdown-content">
+                <!-- Assuming you have an array of employee objects or a list with first and last name data -->
+                {% for emp in emps %}
+                <a href="/remove_emp/{{ emp.id }}">{{ emp.first_name }} {{ emp.last_name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.dropdown-button').addEventListener('click', function() {
+            this.parentElement.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!document.querySelector('.dropdown').contains(event.target)) {
+                document.querySelector('.dropdown').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
